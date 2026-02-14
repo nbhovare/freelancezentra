@@ -1,0 +1,9 @@
+
+*.tfstate
+*.tfstate*
+*.tfstate.*
+.terraform.lock.hcl
+terraform/.terraform/
+**/.terraform/
+**/terraform/.terraform/providers/registry.terraform.io/hashicorp/azurerm/4.1.0/windows_amd64/*.exe
+**/terraform/.terraform/providers/registry.terraform.io/hashicorp/azurerm/4.1.0/windows_amd64/*.msi
