@@ -50,7 +50,7 @@ on:
   pull_request:
 
 env:
-  sub_id: ${{ vars.SUB_ID }}
+  ARM_SUBSCRIPTION_ID: ${{ vars.ARM_SUBSCRIPTION_ID }}
 
 permissions:
   contents: read
