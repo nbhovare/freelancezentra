@@ -1,22 +1,18 @@
-resource "azurerm_app_service_plan" "linux_appserviceplan" {
+resource "azurerm_service_plan" "linux_appserviceplan" {
   # Dedicated Linux App Service Plan
   name                = var.linux_appserviceplan
   location            = var.location
-  resource_group_name = data.azurerm_resource_group.resource_group.name
-  kind                = "linux"
-  reserved            = true
-
-  sku {
-    tier = var.tier
-    size = var.size
-  }
+  resource_group_name = data.azurerm_resource_group.resource_group.name    
+  sku_name            = "S1"
+  os_type = "Linux"
 }
 
-resource "azurerm_app_service" "linux_appservice" {
+resource "azurerm_linux_web_app" "linux_appservice" {
   name                = var.linux_appservice
   location            = var.location
-  resource_group_name = data.azurerm_resource_group.resource_group.name
-  app_service_plan_id = azurerm_app_service_plan.linux_appserviceplan.id
+  resource_group_name = data.azurerm_resource_group.resource_group.name  
+  service_plan_id = azurerm_service_plan.linux_appserviceplan.id
+
 
   tags = {
     env = "dev"
@@ -32,14 +28,6 @@ resource "azurerm_app_service" "linux_appservice" {
     test                           = "123"
   }
 }
-
-resource "azurerm_app_configuration" "linux_appservice_config" {
-  location              = var.location
-  resource_group_name   = data.azurerm_resource_group.resource_group.name
-  name                  = "${var.linux_appservice}-config"
-  public_network_access = "Disabled"
-}
-
 
 resource "azurerm_app_service_virtual_network_swift_connection" "example" {
   app_service_id = azurerm_app_service.linux_appservice.id
