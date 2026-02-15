@@ -11,7 +11,6 @@ terraform {
     storage_account_name = "zentrafdprodsa"
     container_name       = "terraform-state"
     key                  = "terraform.tfstate"
-
   }
 
 }
