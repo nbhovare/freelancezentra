@@ -18,8 +18,7 @@ terraform {
 # Configure the Microsoft Azure Provider
 provider "azurerm" {
   features {}
-
-  subscription_id = "$sub_id"
+  subscription_id = env("sub_id")
   resource_provider_registrations = "none"  
 
 }
