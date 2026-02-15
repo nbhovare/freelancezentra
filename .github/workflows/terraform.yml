@@ -72,6 +72,10 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
+    - name: Output Env Variables
+      run: |
+        echo "Subscription ID: $sub_id"
+
     - name: az login
       uses: azure/login@v1
       with:
