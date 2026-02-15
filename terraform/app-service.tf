@@ -30,7 +30,7 @@ resource "azurerm_linux_web_app" "linux_appservice" {
 }
 
 resource "azurerm_app_service_virtual_network_swift_connection" "example" {
-  app_service_id = azurerm_app_service.linux_appservice.id
+  app_service_id = azurerm_linux_web_app.linux_appservice.id
 
   subnet_id = [
     for s in azurerm_virtual_network.dmz.subnet :
