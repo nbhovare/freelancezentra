@@ -19,7 +19,9 @@ resource "azurerm_linux_web_app" "linux_appservice" {
   }
 
   site_config {
-    linux_fx_version = "python|3.13"
+    application_stack {
+      python_version = "3.11"
+    } 
   }
 
   app_settings = {
