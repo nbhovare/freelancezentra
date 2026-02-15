@@ -68,6 +68,10 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
+    - name : cd terraform directory
+      working-directory: terraform
+      run: echo "Changed working directory to terraform"
+
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
@@ -79,7 +83,7 @@ jobs:
       run: terraform init
 
     # Checks that all Terraform configuration files adhere to a canonical format
-    - name: Terraform Format
+    - name: Terraform Format Check
       run: terraform fmt -check
 
     # Checks that all Terraform configuration files adhere to a canonical format
