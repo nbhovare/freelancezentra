@@ -19,7 +19,7 @@ terraform {
 provider "azurerm" {
   features {}
 
-  subscription_id = "${{ secrets.SUB_ID }}"
-  resource_provider_registrations = "none"
+  subscription_id = "$sub_id"
+  resource_provider_registrations = "none"  
 
 }

@@ -42,12 +42,15 @@
 #       with:
 #         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
-name: 'Terraform'
+name: 'Terraform Deploy'
 
 on:
   push:
     branches: [ "main" ]
   pull_request:
+
+env:
+  sub_id: ${{ vars.SUB_ID }}
 
 permissions:
   contents: read
