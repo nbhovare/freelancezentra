@@ -7,7 +7,7 @@ resource "azurerm_service_plan" "linux_appserviceplan" {
   # Dedicated Linux App Service Plan
   name                = var.linux_appserviceplan
   location            = var.location
-  resource_group_name = data.azurerm_resource_group.resource_group.name    
+  resource_group_name = azurerm_resource_group.resource_group.name    
   sku_name            = var.size
   os_type = "Linux"
 }
@@ -15,7 +15,7 @@ resource "azurerm_service_plan" "linux_appserviceplan" {
 resource "azurerm_linux_web_app" "linux_appservice" {
   name                = var.linux_appservice
   location            = var.location
-  resource_group_name = data.azurerm_resource_group.resource_group.name  
+  resource_group_name = azurerm_resource_group.resource_group.name      
   service_plan_id = azurerm_service_plan.linux_appserviceplan.id
 
 tags = {
