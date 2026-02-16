@@ -7,5 +7,14 @@ resource azurerm_storage_account storage_acc {
     
     tags = {
         environment = "production"
+        team       = "devops"
     }
+
+    lifecycle {
+        prevent_destroy = true
+        ignore_changes = [
+            tags,
+        ]        
+    }
+
 }
