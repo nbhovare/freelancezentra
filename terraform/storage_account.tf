@@ -1,3 +1,4 @@
+/*
 resource "azurerm_resource_group" "storage_acc_rg" {
   name     = var.storage_acc_rg_name
   location = var.storage_acc_rg_location
@@ -34,3 +35,5 @@ resource "azurerm_storage_account_network_rules" "storage_acc_nw_rules" {
   storage_account_id = azurerm_storage_account.storage_acc.id
   default_action     = "Allow"
 }
+
+*/

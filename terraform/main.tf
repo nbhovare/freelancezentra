@@ -7,7 +7,7 @@ terraform {
   }
 
   backend "azurerm" {
-    resource_group_name  = "rg-foundational"
+    resource_group_name  = "rg-foundational-prod"
     storage_account_name = "zentrafdprodsa"
     container_name       = "terraform-state"
     key                  = "terraform.tfstate"

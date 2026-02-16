@@ -1,9 +1,14 @@
+resource "azurerm_resource_group" "resource_group" {
+  name     = var.app_service_resource_group_name
+  location = var.location
+}
+
 resource "azurerm_service_plan" "linux_appserviceplan" {
   # Dedicated Linux App Service Plan
   name                = var.linux_appserviceplan
   location            = var.location
   resource_group_name = data.azurerm_resource_group.resource_group.name    
-  sku_name            = "S1"
+  sku_name            = var.size
   os_type = "Linux"
 }
 
@@ -13,8 +18,7 @@ resource "azurerm_linux_web_app" "linux_appservice" {
   resource_group_name = data.azurerm_resource_group.resource_group.name  
   service_plan_id = azurerm_service_plan.linux_appserviceplan.id
 
-
-  tags = {
+tags = {
     env = "dev"
   }
 
@@ -27,17 +31,18 @@ resource "azurerm_linux_web_app" "linux_appservice" {
   app_settings = {
     ENABLE_ORYX_BUILD              = true
     SCM_DO_BUILD_DURING_DEPLOYMENT = true
-    test                           = "123"
   }
 }
 
 resource "azurerm_app_service_virtual_network_swift_connection" "example" {
   app_service_id = azurerm_linux_web_app.linux_appservice.id
 
+/*
   subnet_id = [
     for s in azurerm_virtual_network.dmz.subnet :
     s.id if s.name == "vnet-dmz-us-subnet1"
   ][0]
 
-  # subnet_id      = azurerm_virtual_network.dmz.subnet.vnet-dmz-us-subnet1.id
+*/
+subnet_id      = azurerm_subnet.app_service_subnet.id
 }
