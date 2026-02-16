@@ -10,8 +10,7 @@ resource azurerm_storage_account storage_acc {
         team       = "devops"
     }
 
-    lifecycle {
-        prevent_destroy = true
+    lifecycle {    
         ignore_changes = [
             tags,
         ]        
