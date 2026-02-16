@@ -1,7 +1,7 @@
 linux_appserviceplan = "asp-us-freelancezentra-prod"
 location             = "Central US"
-tier                 = "Standard"
-size                 = "S1"
+tier                 = "Basic"
+size                 = "B1"
 linux_appservice     = "aas-us-freelancezentra-prod"
 app_service_resource_group_name = "rg-us-devops-appservice-prod"
 
