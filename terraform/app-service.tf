@@ -3,6 +3,7 @@ resource "azurerm_resource_group" "resource_group" {
   location = var.location
 }
 
+/*
 resource "azurerm_service_plan" "linux_appserviceplan" {
   # Dedicated Linux App Service Plan
   name                = var.linux_appserviceplan
@@ -43,6 +44,9 @@ resource "azurerm_app_service_virtual_network_swift_connection" "example" {
     s.id if s.name == "vnet-dmz-us-subnet1"
   ][0]
 
-*/
+
 subnet_id      = azurerm_subnet.app_service_subnet.id
 }
+
+
+*/
