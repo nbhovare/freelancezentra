@@ -5,6 +5,14 @@ terraform {
       version = "=4.1.0"
     }
   }
+
+  backend "azurerm" {
+    resource_group_name  = "rg-foundational-prod"
+    storage_account_name = "zentrafdprodsa"
+    container_name       = "terraform-state"
+    key                  = "terraform-dev.tfstate"
+  }
+
 }
 
 # Configure the Microsoft Azure Provider
