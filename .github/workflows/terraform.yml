@@ -44,10 +44,29 @@
 
 name: 'Terraform Deploy'
 
+#on:
+ # push:
+  #  branches: [ "main" ]
+  #pull_request:
+
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to run workflow on'
+        required: true
+        default: 'main'
+      environments:
+        description: 'Select Environments to run tests against'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+        - dev
+        - uat
+        - prod      
+
+        #   git ls-remote --heads origin | awk '{print $2}' | sed 's|refs/heads/||' | jq -R -s -c 'split("\n")[:-1]'
 
 env:
   ARM_SUBSCRIPTION_ID: ${{ vars.ARM_SUBSCRIPTION_ID }}
@@ -65,12 +84,15 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: terraform
+        working-directory: terraform.env.${{ github.event.inputs.environments }}
 
     steps:
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
       uses: actions/checkout@v4
+      with:
+        ref: ${{ github.event.inputs.branch }}
+
 
     - name: Output Env Variables
       run: |
